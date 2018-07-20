@@ -31,7 +31,8 @@ module.exports = function (config, windowParams) {
       response_type: 'code',
       redirect_uri: config.redirectUri,
       client_id: config.clientId,
-      state: generateRandomString(16)
+      state: generateRandomString(16),
+      display: config.display || 'popup' //async, iframe, page, popup, touch, wap
     };
 
     if (opts.scope) {
@@ -40,6 +41,7 @@ module.exports = function (config, windowParams) {
 
     if (opts.accessType) {
       urlParams.access_type = opts.accessType;
+      //urlParams.approval_prompt = opts.approvalPrompt;
     }
 
     urlParams = Object.assign(urlParams, opts.additionalAuthCodeRequestData);
