@@ -51,6 +51,8 @@ module.exports = function (config, windowParams) {
     return new Promise(function (resolve, reject) {
       const authWindow = new BrowserWindow(windowParams || {'use-content-size': true});
 
+      authWindow.webContents.setUserAgent(authWindow.webContents.getUserAgent().replace('Electron/' + process.versions.electron, ''));
+
       authWindow.loadURL(url);
       authWindow.show();
 
